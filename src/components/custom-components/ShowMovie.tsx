@@ -32,19 +32,19 @@ const ShowMovie = ({ data }: { data: MovieProps }) => {
   };
 
   return (
-    <Card className="w-[400px]">
+    <Card className="w-[340px]">
       <CardHeader>
         <CardTitle>{data.title}</CardTitle>
         <CardContent>
           <img
             src={data.image}
             alt={data.title}
-            className="w-full h-[400px] object-cover rounded-md"
+            className="w-full h-[340px] object-cover rounded-md"
           />
           <p className="mt-2">{data.description}</p>
 
           {/* Delete Button */}
-          <form action={actions.deleteMovie}>
+          <form action="" className="mt-4">
             <Input type="hidden" name="movieId" value={data.id} />
             <Button className="bg-red-500 px-4 py-2 text-white"> Delete</Button>
           </form>
@@ -63,7 +63,7 @@ const ShowMovie = ({ data }: { data: MovieProps }) => {
             <DialogContent className="">
               <DialogHeader>
                 <DialogTitle>Edit Movie</DialogTitle>
-                <form action="" className="space-y-4">
+                <form action={actions.editMovie} className="space-y-4">
                   <div>
                     <Label>Title</Label>
                     <Input
@@ -86,17 +86,13 @@ const ShowMovie = ({ data }: { data: MovieProps }) => {
                     <Label>Image URL</Label>
                     <Input
                       type="text"
-                      name="image"
+                      name="imageUrl"
                       value={updatedMovie.image}
                       onChange={(e) => handleUpdateMovie("image", e)}
                     />
                   </div>
                   <Input type="hidden" name="movieId" value={data.id} />
-                  <Button
-                    type="submit"
-                    className=""
-                    onClick={() => setOpenDialog(false)}
-                  >
+                  <Button type="submit" onClick={() => setOpenDialog(false)}>
                     {" "}
                     Save
                   </Button>
