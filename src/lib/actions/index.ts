@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { prisma } from "../prisma";
 
 export const createMovie = async (formData: FormData) => {
@@ -34,4 +35,17 @@ export const editMovie = async (formData: FormData) => {
       image: newImageUrl,
     },
   });
+
+  revalidatePath("/all-movies");
+};
+
+export const deleteMovie = async (formData: FormData) => {
+  const movieId = formData.get("movieId") as string;
+  await prisma.movie.delete({
+    where: {
+      id: movieId,
+    },
+  });
+
+  revalidatePath("/all-movies");
 };

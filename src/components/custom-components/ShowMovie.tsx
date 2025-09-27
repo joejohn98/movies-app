@@ -44,7 +44,7 @@ const ShowMovie = ({ data }: { data: MovieProps }) => {
           <p className="mt-2">{data.description}</p>
 
           {/* Delete Button */}
-          <form action="" className="mt-4">
+          <form action={actions.deleteMovie} className="mt-4">
             <Input type="hidden" name="movieId" value={data.id} />
             <Button className="bg-red-500 px-4 py-2 text-white"> Delete</Button>
           </form>
